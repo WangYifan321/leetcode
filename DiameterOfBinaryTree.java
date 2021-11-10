@@ -1,5 +1,6 @@
-public class DiameterOfBinaryTree {
 
+public class DiameterOfBinaryTree {
+//dfs递归简单题。求出左右两颗子树的深度即可
       public static class TreeNode {
           int val;
           TreeNode left;
@@ -12,7 +13,18 @@ public class DiameterOfBinaryTree {
               this.right = right;
           }
       }
+      int ans=0;
     public int diameterOfBinaryTree(TreeNode root) {
+        ans=0;
+        dfs(root);
+        return ans;
+    }
 
+    public int dfs(TreeNode root){
+        if(root==null) return 0;
+        int l = dfs(root.left);
+        int r = dfs(root.right);
+        ans=Math.max(l+r,ans);
+        return Math.max(l,r)+1;
     }
 }
